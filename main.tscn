@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://cdnp67voh6i0p"]
+
+[ext_resource type="Script" uid="uid://euhvn8oned0v" path="res://rigid_body_2d.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://blpamuismnbv5" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dqawqu4c6pmsd" path="res://enemy.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://c8ym1oe8whovg" path="res://sword.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://brefx3io6pud2" path="res://health_bar.gd" id="4_1bvp3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 64.00781
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(128, 128)
+
+[node name="Node2D" type="Node2D" unique_id=764401362]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2132336498]
+modulate = Color(1, 1, 1, 0.14901961)
+scale = Vector2(100, 100)
+texture = ExtResource("2_h2yge")
+
+[node name="Player" type="RigidBody2D" parent="." unique_id=1089079350 node_paths=PackedStringArray("healthBarForeground")]
+position = Vector2(478, 235)
+mass = 0.001
+gravity_scale = 0.0
+can_sleep = false
+linear_damp = 3.0
+angular_damp = 45.0
+script = ExtResource("1_0xm2m")
+healthBarForeground = NodePath("../HealthBar/Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1295963633]
+rotation = 1.2217305
+texture = ExtResource("2_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=736746963]
+rotation = 1.2217305
+shape = SubResource("CircleShape2D_1bvp3")
+
+[node name="Sword" type="Sprite2D" parent="Player" unique_id=1713654208]
+position = Vector2(129, -18)
+rotation = 0.5235988
+scale = Vector2(1.5, 0.25)
+texture = ExtResource("2_h2yge")
+script = ExtResource("3_lquwl")
+
+[node name="Area2D" type="Area2D" parent="Player/Sword" unique_id=1846394998]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Sword/Area2D" unique_id=57417009]
+shape = SubResource("RectangleShape2D_h2yge")
+debug_color = Color(0.22658393, 0.6385784, 0, 0.41960785)
+
+[node name="HealthBar" type="Node2D" parent="." unique_id=1329718768 node_paths=PackedStringArray("player")]
+position = Vector2(-64, -114)
+script = ExtResource("4_1bvp3")
+player = NodePath("../Player")
+
+[node name="bg" type="Sprite2D" parent="HealthBar" unique_id=44408479]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(1, 0.2)
+texture = ExtResource("2_h2yge")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="HealthBar" unique_id=411674413]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(1, 0.2)
+texture = ExtResource("2_h2yge")
+centered = false
+
+[node name="Enemy" parent="." unique_id=1341150150 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+position = Vector2(1457, 524)
+player = NodePath("../Player")
+
+[node name="Enemy2" parent="." unique_id=508418723 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+position = Vector2(1443, 3011)
+player = NodePath("../Player")
+
+[node name="Enemy3" parent="." unique_id=1826371225 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+position = Vector2(1689, -306)
+player = NodePath("../Player")
+
+[node name="Enemy4" parent="." unique_id=1286834931 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+position = Vector2(-4111, 2013)
+player = NodePath("../Player")
+
+[node name="Enemy5" parent="." unique_id=1227204295 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
+position = Vector2(-7, -1411)
+player = NodePath("../Player")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1838958213]
+zoom = Vector2(0.5, 0.5)
+
+[connection signal="body_entered" from="Player/Sword/Area2D" to="Player/Sword" method="_on_area_2d_body_entered"]
