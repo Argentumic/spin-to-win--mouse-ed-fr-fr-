@@ -26,3 +26,12 @@ func deal_damage(damage:int):
 
 func get_damage() -> int:
 	return damage;
+
+func get_hp() -> float:
+	return hp
+
+func get_max_hp() -> float:
+	return maxHP
+
+func teleport_to(point:Vector2):
+	position = point;

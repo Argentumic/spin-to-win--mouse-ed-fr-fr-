@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://ocu5l35r1h5y"]
+
+[ext_resource type="Script" uid="uid://dm2g6syk38qdi" path="res://healthbar.gd" id="1_vii3e"]
+[ext_resource type="FontFile" uid="uid://dswwfv4asta2f" path="res://fonts/KiwiSoda.ttf" id="2_bq16f"]
+
+[node name="Healthbar" type="Control" unique_id=1521435540 node_paths=PackedStringArray("target", "percentLabel")]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = -12.0
+grow_vertical = 0
+script = ExtResource("1_vii3e")
+target = NodePath("")
+percentLabel = NodePath("PercentLabel")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1253580147]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_right = 154.0
+grow_vertical = 0
+color = Color(1, 0, 0, 1)
+
+[node name="ForeGround" type="ColorRect" parent="." unique_id=2052003611]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_right = 154.0
+grow_vertical = 0
+color = Color(0, 1, 0, 1)
+
+[node name="PercentLabel" type="Label" parent="." unique_id=1549298499]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_right = 154.0
+grow_vertical = 0
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_bq16f")
+theme_override_font_sizes/font_size = 16
+text = "100/100hp"
+horizontal_alignment = 1
+vertical_alignment = 1

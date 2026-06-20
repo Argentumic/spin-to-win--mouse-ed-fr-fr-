@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cdnp67voh6i0p"]
 
 [ext_resource type="Script" uid="uid://euhvn8oned0v" path="res://rigid_body_2d.gd" id="1_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://blpamuismnbv5" path="res://icon.svg" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://hsehcn5c3pgx" path="res://game_manager.gd" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cbdorsyjhf6wy" path="res://goose.png" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://rvlj3cb6enmw" path="res://katana.png" id="3_272bh"]
-[ext_resource type="PackedScene" uid="uid://dqawqu4c6pmsd" path="res://enemy.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://c8ym1oe8whovg" path="res://sword.gd" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ocu5l35r1h5y" path="res://healthbar.tscn" id="7_5vw27"]
 [ext_resource type="Script" uid="uid://pfb3jnissrd5" path="res://camera_2d.gd" id="7_272bh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
@@ -17,12 +17,12 @@ radius = 16.76308
 [node name="Node2D" type="Node2D" unique_id=764401362]
 texture_filter = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2132336498]
-modulate = Color(1, 1, 1, 0.14901961)
-scale = Vector2(20, 20)
-texture = ExtResource("2_h2yge")
+[node name="GameManager" type="Node" parent="." unique_id=730957163]
+script = ExtResource("1_7mycd")
 
-[node name="Player" type="RigidBody2D" parent="." unique_id=1089079350]
+[node name="Area" type="Node2D" parent="." unique_id=1829154792 groups=["area_container"]]
+
+[node name="Player" type="RigidBody2D" parent="." unique_id=1089079350 groups=["player"]]
 position = Vector2(478, 235)
 mass = 0.001
 gravity_scale = 0.0
@@ -30,6 +30,7 @@ can_sleep = false
 linear_damp = 3.0
 angular_damp = 45.0
 script = ExtResource("1_0xm2m")
+speed = 18
 
 [node name="Sword" type="Sprite2D" parent="Player" unique_id=1713654208]
 position = Vector2(32, -2)
@@ -53,29 +54,22 @@ texture = ExtResource("3_7mycd")
 rotation = 1.2217305
 shape = SubResource("CircleShape2D_1bvp3")
 
-[node name="Enemy" parent="." unique_id=1341150150 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
-position = Vector2(1457, 524)
-player = NodePath("../Player")
-
-[node name="Enemy2" parent="." unique_id=508418723 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
-position = Vector2(1443, 3011)
-player = NodePath("../Player")
-
-[node name="Enemy3" parent="." unique_id=1826371225 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
-position = Vector2(1689, -306)
-player = NodePath("../Player")
-
-[node name="Enemy4" parent="." unique_id=1286834931 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
-position = Vector2(-4111, 2013)
-player = NodePath("../Player")
-
-[node name="Enemy5" parent="." unique_id=1227204295 node_paths=PackedStringArray("player") instance=ExtResource("3_h2yge")]
-position = Vector2(-7, -1411)
-player = NodePath("../Player")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1838958213 node_paths=PackedStringArray("target")]
-zoom = Vector2(0.5, 0.5)
 script = ExtResource("7_272bh")
 target = NodePath("../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1431106046]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=160988111]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Healthbar" parent="CanvasLayer/Control" unique_id=1521435540 node_paths=PackedStringArray("target") instance=ExtResource("7_5vw27")]
+layout_mode = 1
+target = NodePath("../../../Player")
 
 [connection signal="body_entered" from="Player/Sword/Area2D" to="Player/Sword" method="_on_area_2d_body_entered"]
