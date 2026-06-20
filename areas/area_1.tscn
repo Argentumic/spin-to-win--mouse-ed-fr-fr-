@@ -4,6 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://blpamuismnbv5" path="res://icon.svg" id="2_sl4fl"]
 [ext_resource type="PackedScene" uid="uid://dqawqu4c6pmsd" path="res://enemy.tscn" id="3_r5y2n"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1prma"]
+vertices = PackedVector2Array(1194, 554, 12331.227, 6261.75, -7724.4766, 2768.5, -138, 554, 746, 202, 906, 278, 138, 278, 630, 202, 6833.1406, -4778.3203, 1194, 502, -8253.406, -6298.2813, -591.0078, -6512.961, -138, -682, 1194, -682, 138, -406, 170, -406, 438, -150, 906, 502, 170, -470, 438, -470, 630, -74, 906, -150, 746, -74, 906, -470, 1194, -470)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 1, 0, 9), PackedInt32Array(3, 2, 10, 11, 12), PackedInt32Array(12, 11, 8, 13), PackedInt32Array(7, 6, 14, 15, 16), PackedInt32Array(9, 17, 5, 8), PackedInt32Array(15, 18, 19, 16), PackedInt32Array(20, 7, 16), PackedInt32Array(20, 16, 21, 22), PackedInt32Array(21, 23, 24), PackedInt32Array(8, 5, 4, 21, 24), PackedInt32Array(4, 22, 21), PackedInt32Array(13, 8, 24)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(160, -480, 448, -480, 448, -160, 640, -64, 640, 192, 736, 192, 736, -64, 640, -64, 448, -160, 896, -160, 896, -480, 1184, -480, 1184, -672, -128, -672, -128, 544, -7734, 2777, -8264, -6308, -590, -6523, 6840, -4787, 12349, 6275, -7734, 2777, -128, 544, 1184, 544, 1184, 512, 896, 512, 896, 288, 128, 288, 128, -416, 160, -416)])
+
 [node name="Area 1" type="Node2D" unique_id=512324975]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1030510661]
@@ -32,3 +37,6 @@ position = Vector2(-7, -1411)
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=1742591172 groups=["spawn_point"]]
 position = Vector2(301, -354)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1513226638]
+navigation_polygon = SubResource("NavigationPolygon_1prma")
