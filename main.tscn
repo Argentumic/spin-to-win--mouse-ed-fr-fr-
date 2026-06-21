@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://cpyyd2j7ji814" path="res://sprites/katana.png" id="3_272bh"]
 [ext_resource type="Script" uid="uid://c8ym1oe8whovg" path="res://scripts/sword.gd" id="3_lquwl"]
 [ext_resource type="Texture2D" uid="uid://b38nycvgtikvq" path="res://sprites/duck.png" id="5_4c57u"]
+[ext_resource type="Texture2D" uid="uid://jc2wbqb38v7r" path="res://sprites/stamina_bar_under.png" id="6_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://ocu5l35r1h5y" path="res://healthbar.tscn" id="7_5vw27"]
 [ext_resource type="Script" uid="uid://pfb3jnissrd5" path="res://scripts/camera_2d.gd" id="7_272bh"]
+[ext_resource type="Texture2D" uid="uid://d1hcuatrlq1gd" path="res://sprites/stamina_bar_progress.png" id="7_w48qg"]
 [ext_resource type="Theme" uid="uid://bvoedy6niva4k" path="res://main_theme.tres" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://vti45e2u4mvw" path="res://scripts/pause.gd" id="8_kek77"]
 [ext_resource type="Shader" uid="uid://31cnn745tnt7" path="res://transition.gdshader" id="9_dg77c"]
@@ -67,7 +69,7 @@ gravity_scale = 0.0
 can_sleep = false
 linear_damp = 4.5
 script = ExtResource("1_0xm2m")
-speed = 14
+speed = 13
 
 [node name="Sword" type="Node2D" parent="Player" unique_id=381591880]
 
@@ -95,6 +97,18 @@ shape = SubResource("CircleShape2D_1bvp3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CollisionCheck" unique_id=146456861]
 shape = SubResource("CircleShape2D_4c57u")
 debug_color = Color(0.95147854, 2.5027991e-06, 0.5658839, 0.41960785)
+
+[node name="DashCooldownBar" type="TextureProgressBar" parent="Player" unique_id=2673482]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+offset_left = -23.0
+offset_top = -21.0
+offset_right = -11.0
+offset_bottom = -9.0
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("6_ycdy4")
+texture_progress = ExtResource("7_w48qg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1838958213 node_paths=PackedStringArray("target") groups=["camera"]]
 process_mode = 1
