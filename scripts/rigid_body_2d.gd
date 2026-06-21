@@ -11,6 +11,8 @@ var canMoveToNextArea:bool = false;
 
 @onready var duckSprite = $Duck;
 @onready var sword = $Sword;
+@onready var swordSprite = $Sword/Sword;
+
 
 # hold time for transitioning to next area in seconds
 @onready var holdTimeLabel = $"../CanvasLayer/Control/HoldTimeLabel";
@@ -26,7 +28,13 @@ func _physics_process(delta: float) -> void:
 	var input_direction = Input.get_vector("left", "right", "up", "down");
 	apply_central_force(input_direction*speed);
 	
+	var oldSwordAngle:float = sword.rotation_degrees;
 	sword.look_at(get_global_mouse_position());
+	var swordAngle:float = sword.rotation_degrees;
+	if (swordAngle - oldSwordAngle) < -0.1:
+		swordSprite.flip_h = false;
+	elif (swordAngle - oldSwordAngle) > 0.1:
+		swordSprite.flip_h = true;
 	if abs(sword.global_rotation_degrees) > 90:
 		duckSprite.flip_h = false;
 	else:
@@ -39,7 +47,6 @@ func _physics_process(delta: float) -> void:
 		elapsedHoldTime += delta;
 	else:
 		elapsedHoldTime = 0;
-	
 	if elapsedHoldTime > holdTime:
 		gameManager._next_area();
 	holdTimeLabel.text = str(round((holdTime - elapsedHoldTime)*10)/10);

@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://vti45e2u4mvw" path="res://scripts/pause.gd" id="8_kek77"]
 [ext_resource type="Shader" uid="uid://31cnn745tnt7" path="res://transition.gdshader" id="9_dg77c"]
 [ext_resource type="Script" uid="uid://brclol0jxty2p" path="res://scripts/mini_map.gd" id="10_4c57u"]
-[ext_resource type="Script" uid="uid://c5x8dkylj7dvr" path="res://transition.gd" id="10_ycdy4"]
+[ext_resource type="Script" uid="uid://c5x8dkylj7dvr" path="res://scripts/transition.gd" id="10_ycdy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(4, 48)
