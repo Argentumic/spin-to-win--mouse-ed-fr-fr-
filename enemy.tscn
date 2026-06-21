@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bn74b3o5uhnqk" path="res://scripts/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://cd7gai1wqv6c2" path="res://enemy.png" id="2_qi2p4"]
 [ext_resource type="PackedScene" uid="uid://ocu5l35r1h5y" path="res://healthbar.tscn" id="3_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://cfm538o1tkqwe" path="res://marker.png" id="4_epg4t"]
+[ext_resource type="Script" uid="uid://cvrg85x0o0uj0" path="res://marker.gd" id="4_iifgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(12, 12)
@@ -13,9 +15,16 @@ size = Vector2(24, 24)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
 radius = 200.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1341150150]
+[node name="Enemy" type="CharacterBody2D" unique_id=1341150150 groups=["enemy"]]
 motion_mode = 1
 script = ExtResource("1_4gyqm")
+
+[node name="Marker" type="Sprite2D" parent="." unique_id=1697046159]
+texture_filter = 1
+texture = ExtResource("4_epg4t")
+script = ExtResource("4_iifgy")
+screen_margin = 16.0
+smoothing_speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462799679]
 modulate = Color(1, 0.16862746, 0.1764706, 1)

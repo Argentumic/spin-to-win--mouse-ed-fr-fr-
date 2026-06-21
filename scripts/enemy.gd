@@ -53,6 +53,9 @@ func deal_damage(damage:int):
 	if hp <= 0:
 		_kms();
 
+func is_active() -> bool:
+	return isActive;
+
 func _kms():
 	self.queue_free()
 
@@ -67,7 +70,6 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	if is_player_inside:
 		player.deal_damage(dps);
-
 
 func _on_wake_up_area_body_entered(body: Node2D) -> void:
 	if body == player:
