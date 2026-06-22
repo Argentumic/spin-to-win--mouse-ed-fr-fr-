@@ -50,3 +50,4 @@ func finish_level() -> void:
 	await _next_area();
 	get_tree().paused = true;
 	levelUpMenu.visible = true;
+	levelUpMenu.add_points(1);
