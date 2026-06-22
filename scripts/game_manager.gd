@@ -43,8 +43,11 @@ func _process(delta: float) -> void:
 	pass
 
 func restart_current_area() -> void:
-	player.reset_hp();
+	transition.toggle_transition();
+	await transition.done_transitioning;
 	_load_area(currentArea);
+	transition.toggle_transition();
+	player.reset_hp();
 
 func finish_level() -> void:
 	await _next_area();
