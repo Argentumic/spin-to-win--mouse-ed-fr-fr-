@@ -63,6 +63,7 @@ func _on_next_level_pressed() -> void:
 	get_tree().paused = false;
 	transition.toggle_transition();
 	musicPlayer.play();
+	player.level_start_animation();
 
 func _on_reset_pressed() -> void:
 	maxHpCurrLvl = 0;

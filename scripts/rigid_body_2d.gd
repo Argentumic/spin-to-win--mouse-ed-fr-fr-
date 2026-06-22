@@ -10,6 +10,8 @@ var hp:float;
 var damage:float = originalDamage;
 var gameManager;
 var canMoveToNextArea:bool = false;
+var camera:Camera2D;
+@onready var levelLabel = $LevelLabel;
 
 @onready var duckSprite = $Duck;
 @onready var sword = $Sword;
@@ -31,6 +33,8 @@ var elapsedHoldTime:float = 0;
 func _ready() -> void:
 	hp = maxHP;
 	gameManager = get_tree().get_first_node_in_group("game_manager");
+	camera = get_tree().get_first_node_in_group("camera");
+	level_start_animation();
 
 var lastDirection:Vector2 = Vector2.RIGHT;
 var dashDirection:Vector2 = Vector2.RIGHT;
@@ -128,4 +132,9 @@ func _on_collision_check_area_exited(area: Area2D) -> void:
 		holdTimeLabel.visible = false;
 
 func level_start_animation() -> void:
-	pass
+	levelLabel.modulate = Color(1.0, 1.0, 1.0, 1.0);
+	camera.zoom = Vector2(2.0, 2.0);
+	var labelTween = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO);
+	var cameraTween = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO);
+	labelTween.tween_property(levelLabel, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1.5);
+	cameraTween.tween_property(camera, "zoom", Vector2(1.0, 1.0), 1.5)

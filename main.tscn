@@ -13,6 +13,7 @@
 [ext_resource type="Theme" uid="uid://bvoedy6niva4k" path="res://main_theme.tres" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://vti45e2u4mvw" path="res://scripts/pause.gd" id="8_kek77"]
 [ext_resource type="Shader" uid="uid://31cnn745tnt7" path="res://transition.gdshader" id="9_dg77c"]
+[ext_resource type="Script" uid="uid://doc74qsv676ob" path="res://level_label.gd" id="10_cegan"]
 [ext_resource type="Script" uid="uid://c5x8dkylj7dvr" path="res://scripts/transition.gd" id="10_ycdy4"]
 [ext_resource type="FontFile" uid="uid://dswwfv4asta2f" path="res://fonts/KiwiSoda.ttf" id="11_2cqfq"]
 [ext_resource type="Script" uid="uid://b4kjbilmt6cq" path="res://scripts/level_up.gd" id="11_yaehf"]
@@ -122,6 +123,22 @@ value = 100.0
 fill_mode = 4
 texture_under = ExtResource("6_ycdy4")
 texture_progress = ExtResource("7_w48qg")
+
+[node name="LevelLabel" type="Label" parent="Player" unique_id=1791700751]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -40.0
+offset_right = 23.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_5vw27")
+text = "Level 1"
+script = ExtResource("10_cegan")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1838958213 node_paths=PackedStringArray("target") groups=["camera"]]
 process_mode = 1
