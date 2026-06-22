@@ -15,9 +15,11 @@ func toggle_transition() -> void:
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS);
 	if isTransperent:
 		tween.tween_property(material, "shader_parameter/progress", 2.5, 0.5);
+		tween.tween_property(material, "shader_parameter/progress", 2.5, 0.1);
 		isTransperent = false;
 	else:
 		tween.tween_property(material, "shader_parameter/progress", 0.0, 0.5);
+		tween.tween_property(material, "shader_parameter/progress", 0.0, 0.1);
 		isTransperent = true;
 	await tween.finished;
 	done_transitioning.emit();

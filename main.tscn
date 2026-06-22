@@ -13,6 +13,10 @@
 [ext_resource type="Script" uid="uid://vti45e2u4mvw" path="res://scripts/pause.gd" id="8_kek77"]
 [ext_resource type="Shader" uid="uid://31cnn745tnt7" path="res://transition.gdshader" id="9_dg77c"]
 [ext_resource type="Script" uid="uid://c5x8dkylj7dvr" path="res://scripts/transition.gd" id="10_ycdy4"]
+[ext_resource type="FontFile" uid="uid://dswwfv4asta2f" path="res://fonts/KiwiSoda.ttf" id="11_2cqfq"]
+[ext_resource type="Script" uid="uid://b4kjbilmt6cq" path="res://scripts/level_up.gd" id="11_yaehf"]
+[ext_resource type="Texture2D" uid="uid://dkj7rlx5dve7s" path="res://sprites/arrow1.png" id="12_yaehf"]
+[ext_resource type="Texture2D" uid="uid://cu6lvh0cw7di0" path="res://sprites/arrow2.png" id="13_074og"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(4, 48)
@@ -150,6 +154,182 @@ grow_vertical = 2
 theme = ExtResource("8_5vw27")
 text = "10"
 
+[node name="LevelUp" type="Control" parent="CanvasLayer/Control" unique_id=204488110]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_yaehf")
+
+[node name="BG" type="ColorRect" parent="CanvasLayer/Control/LevelUp" unique_id=1776652411]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.15, 0.112500004, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/LevelUp/BG" unique_id=1905592762]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.5
+offset_top = -14.5
+offset_right = 206.5
+offset_bottom = 101.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer" unique_id=1719329183]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer" unique_id=2122321396]
+texture_filter = 1
+layout_mode = 2
+
+[node name="MaxHP" type="VBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1855983906]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/MaxHP" unique_id=60181554]
+layout_mode = 2
+theme = ExtResource("8_5vw27")
+text = "0/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxHP" type="Button" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/MaxHP" unique_id=152517310]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_2cqfq")
+text = "Max
+HP"
+icon = ExtResource("12_yaehf")
+
+[node name="DashCooldown" type="VBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=333784965]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/DashCooldown" unique_id=1396289223]
+layout_mode = 2
+theme = ExtResource("8_5vw27")
+text = "0/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DashCooldown" type="Button" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/DashCooldown" unique_id=1649353792]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_2cqfq")
+text = "Dash
+cooldown"
+icon = ExtResource("13_074og")
+
+[node name="KatanaLength" type="VBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1977422829]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/KatanaLength" unique_id=1403238685]
+layout_mode = 2
+theme = ExtResource("8_5vw27")
+text = "0/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KatanaLength" type="Button" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/KatanaLength" unique_id=75792920]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_2cqfq")
+text = "Katana
+length"
+icon = ExtResource("12_yaehf")
+
+[node name="Damage" type="VBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=114714246]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/Damage" unique_id=733933388]
+layout_mode = 2
+theme = ExtResource("8_5vw27")
+text = "0/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Damage" type="Button" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/Damage" unique_id=36097147]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_2cqfq")
+text = "Damage"
+icon = ExtResource("12_yaehf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=803432255]
+layout_mode = 2
+
+[node name="Amount" type="Label" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=959403107]
+layout_mode = 2
+theme = ExtResource("8_5vw27")
+text = "0/1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpinAttack" type="Button" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=673588399]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_2cqfq")
+text = "Spin
+Attack"
+
+[node name="TotalPointsHBox" type="HBoxContainer" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer" unique_id=793316496]
+layout_mode = 2
+
+[node name="Total ponts" type="Label" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/TotalPointsHBox" unique_id=2015807819]
+layout_mode = 2
+theme = ExtResource("8_5vw27")
+text = "Total points:"
+vertical_alignment = 1
+
+[node name="num" type="Label" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/TotalPointsHBox" unique_id=1666222826]
+layout_mode = 2
+theme = ExtResource("8_5vw27")
+text = "67"
+vertical_alignment = 1
+
+[node name="Reset" type="Button" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer" unique_id=347335788]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_2cqfq")
+text = "Reset"
+
+[node name="NextLevel" type="Button" parent="CanvasLayer/Control/LevelUp/BG/HBoxContainer" unique_id=1258675100]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_2cqfq")
+text = "Next
+level"
+
+[node name="Level cleared!" type="Label" parent="CanvasLayer/Control/LevelUp/BG" unique_id=1721255942]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -95.0
+offset_top = 44.25
+offset_right = 95.0
+offset_bottom = 76.25
+grow_horizontal = 2
+theme = ExtResource("8_5vw27")
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "Level cleared!"
+
 [node name="Transition" type="ColorRect" parent="CanvasLayer/Control" unique_id=549200282 groups=["transition"]]
 process_mode = 3
 material = SubResource("ShaderMaterial_dg77c")
@@ -217,5 +397,12 @@ text = "Main menu"
 [connection signal="body_entered" from="Player/Sword/Sword/Area2D" to="Player/Sword/Sword" method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="Player/CollisionCheck" to="Player" method="_on_collision_check_area_entered"]
 [connection signal="area_exited" from="Player/CollisionCheck" to="Player" method="_on_collision_check_area_exited"]
+[connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/MaxHP/MaxHP" to="CanvasLayer/Control/LevelUp" method="_on_max_hp_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/DashCooldown/DashCooldown" to="CanvasLayer/Control/LevelUp" method="_on_dash_cooldown_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/KatanaLength/KatanaLength" to="CanvasLayer/Control/LevelUp" method="_on_katana_length_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/Damage/Damage" to="CanvasLayer/Control/LevelUp" method="_on_damage_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer/SpinAttack" to="CanvasLayer/Control/LevelUp" method="_on_spin_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/Reset" to="CanvasLayer/Control/LevelUp" method="_on_reset_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/NextLevel" to="CanvasLayer/Control/LevelUp" method="_on_next_level_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Pause/ButtonContainer/Continue" to="CanvasLayer/Control/Pause" method="_on_continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Pause/ButtonContainer/MainMenu" to="CanvasLayer/Control/Pause" method="_on_main_menu_pressed"]

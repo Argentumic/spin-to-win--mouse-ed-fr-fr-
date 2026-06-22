@@ -86,7 +86,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		elapsedHoldTime = 0;
 	if elapsedHoldTime > holdTime:
-		gameManager._next_area();
+		gameManager.finish_level();
 	holdTimeLabel.text = str(round((holdTime - elapsedHoldTime)*10)/10);
 
 func deal_damage(damage:int):
