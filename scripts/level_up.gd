@@ -5,6 +5,7 @@ extends Control
 
 @onready var maxHpButton = $BG/HBoxContainer/VBoxContainer/HBoxContainer/MaxHP/MaxHP
 @onready var maxHpLabel = $BG/HBoxContainer/VBoxContainer/HBoxContainer/MaxHP/Amount
+@export var maxHpUpgradePower:float = 10;
 
 @onready var dashCooldownButton = $BG/HBoxContainer/VBoxContainer/HBoxContainer/DashCooldown/DashCooldown
 @onready var dashCooldownLabel = $BG/HBoxContainer/VBoxContainer/HBoxContainer/DashCooldown/Amount
@@ -14,6 +15,7 @@ extends Control
 
 @onready var damageButton = $BG/HBoxContainer/VBoxContainer/HBoxContainer/Damage/Damage
 @onready var damageLabel = $BG/HBoxContainer/VBoxContainer/HBoxContainer/Damage/Amount
+@export var damageUpgradePower:float = 2;
 
 @onready var spinAttackButton = $BG/HBoxContainer/VBoxContainer/HBoxContainer/SpinAttack/SpinAttack
 @onready var spinAttackLabel = $BG/HBoxContainer/VBoxContainer/HBoxContainer/SpinAttack/Amount
@@ -21,6 +23,7 @@ extends Control
 @onready var totalPointsNumberLabel = $BG/HBoxContainer/VBoxContainer/TotalPointsHBox/num
 var gameManager
 var transition
+var player
 
 var totalUpgradePoints:int = 0;
 var freeUpgradePoints:int = 0;
@@ -32,23 +35,31 @@ func add_points(amtOfPts:int) -> void:
 func _ready() -> void:
 	gameManager = get_tree().get_first_node_in_group("game_manager");
 	transition = get_tree().get_first_node_in_group("transition");
+	player = get_tree().get_first_node_in_group("player");
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	totalPointsNumberLabel.text = str(freeUpgradePoints);
-	maxHpLabel.text = str(maxHpCurrLvl, "/", maxHpMaxLvl);
-	dashCooldownLabel.text = str(dashCooldownCurrLvl, "/", dashCooldownMaxLvl);
-	katanaLengthLabel.text = str(katanaLengthCurrLvl, "/", katanaLengthMaxLvl);
-	damageLabel.text = str(damageCurrLvl, "/", dagameMaxLvl);
-	spinAttackLabel.text = str(spinAttackCurrLvl, "/", spinAttackMaxLvl);
+	maxHpLabel.text = str(maxHpCurrLvl);
+	dashCooldownLabel.text = str(dashCooldownCurrLvl);
+	katanaLengthLabel.text = str(katanaLengthCurrLvl);
+	damageLabel.text = str(damageCurrLvl);
+	spinAttackLabel.text = str(spinAttackCurrLvl);
 	if freeUpgradePoints == 0:
 		maxHpButton.disabled = true;
 		dashCooldownButton.disabled = true;
 		katanaLengthButton.disabled = true;
 		damageButton.disabled = true;
 		spinAttackButton.disabled = true;
+	else:
+		maxHpButton.disabled = false;
+		dashCooldownButton.disabled = false;
+		katanaLengthButton.disabled = false;
+		damageButton.disabled = false;
+		spinAttackButton.disabled = false;
 
 func _on_next_level_pressed() -> void:
+	_apply_upgrades();
 	transition.toggle_transition();
 	await transition.done_transitioning;
 	visible = false;
@@ -63,27 +74,38 @@ func _on_reset_pressed() -> void:
 	spinAttackCurrLvl = 0;
 	freeUpgradePoints = totalUpgradePoints;
 
-var maxHpMaxLvl:int = 10;
 var maxHpCurrLvl:int = 0;
 func _on_max_hp_pressed() -> void:
-	pass # Replace with function body.
+	if freeUpgradePoints > 0:
+		freeUpgradePoints -= 1;
+		maxHpCurrLvl += 1;
 
-var dashCooldownMaxLvl:int = 10;
 var dashCooldownCurrLvl:int = 0;
 func _on_dash_cooldown_pressed() -> void:
-	pass # Replace with function body.
+	if freeUpgradePoints > 0:
+		freeUpgradePoints -= 1;
+		dashCooldownCurrLvl += 1;
 
-var katanaLengthMaxLvl:int = 10;
 var katanaLengthCurrLvl:int = 0;
 func _on_katana_length_pressed() -> void:
-	pass # Replace with function body.
+	if freeUpgradePoints > 0:
+		freeUpgradePoints -= 1;
+		katanaLengthCurrLvl += 1;
 
-var dagameMaxLvl:int = 10;
 var damageCurrLvl:int = 0;
 func _on_damage_pressed() -> void:
-	pass # Replace with function body.
+	if freeUpgradePoints > 0:
+		freeUpgradePoints -= 1;
+		damageCurrLvl += 1;
 
-var spinAttackMaxLvl:int = 1;
 var spinAttackCurrLvl:int = 0;
 func _on_spin_attack_pressed() -> void:
-	pass # Replace with function body.
+	if freeUpgradePoints > 0:
+		freeUpgradePoints -= 1;
+		spinAttackCurrLvl += 1;
+
+func _apply_upgrades() -> void:
+	player.maxHP = player.originalMaxHP + maxHpUpgradePower * maxHpCurrLvl;
+	player.reset_hp();
+	
+	player.damage = player.originalDamage + damageUpgradePower * damageCurrLvl;

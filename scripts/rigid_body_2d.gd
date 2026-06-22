@@ -1,12 +1,13 @@
 extends RigidBody2D
 
-@export var maxHP = 100;
+@export var originalMaxHP:float = 100;
+var maxHP:float = originalMaxHP;
 var hp:float;
 @export var speed:int = 20;
-@export var angularSpeed:int = 2;
 @export var maxSpeed:int = 600;
 @export var dashMaxSpeed: int = 1000;
-@export var damage:int = 20;
+@export var originalDamage:float = 10;
+var damage:float = originalDamage;
 var gameManager;
 var canMoveToNextArea:bool = false;
 
