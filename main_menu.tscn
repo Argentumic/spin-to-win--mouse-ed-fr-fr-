@@ -3,7 +3,9 @@
 [ext_resource type="Theme" uid="uid://bvoedy6niva4k" path="res://main_theme.tres" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dgk4duu4e60o0" path="res://scripts/button_container.gd" id="2_7vrkn"]
 [ext_resource type="Shader" uid="uid://31cnn745tnt7" path="res://transition.gdshader" id="3_jix8l"]
+[ext_resource type="PackedScene" uid="uid://caxvvysnilkwn" path="res://audio.tscn" id="3_nlkkf"]
 [ext_resource type="Script" uid="uid://c5x8dkylj7dvr" path="res://scripts/transition.gd" id="4_glbon"]
+[ext_resource type="AudioStream" uid="uid://dvqtg1vw0wb7v" path="res://duckinja_elevator music(demo 1).mp3" id="5_glbon"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nlkkf"]
 shader = ExtResource("3_jix8l")
@@ -134,22 +136,14 @@ theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "Settings"
 
-[node name="There is nothing to set yet" type="Label" parent="Settings" unique_id=1652495490]
+[node name="Audio" parent="Settings" unique_id=1112668105 instance=ExtResource("3_nlkkf")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -67.0
-offset_top = 132.0
-offset_right = 67.0
-offset_bottom = 234.0
-grow_horizontal = 2
-theme = ExtResource("1_06t4h")
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 32
-text = "There is
-nothing to
-set yet"
+anchors_preset = 8
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -65.0
+offset_bottom = 65.0
+grow_vertical = 2
 
 [node name="Tutorial" type="ColorRect" parent="." unique_id=400218518]
 visible = false
@@ -205,6 +199,12 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("4_glbon")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1326134425]
+stream = ExtResource("5_glbon")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="pressed" from="ColorRect/ButtonContainer/Play" to="ColorRect/ButtonContainer" method="_on_play_pressed"]
 [connection signal="pressed" from="ColorRect/ButtonContainer/Settings" to="ColorRect/ButtonContainer" method="_on_settings_pressed"]

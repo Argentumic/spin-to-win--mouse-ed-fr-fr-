@@ -13,12 +13,13 @@
 [ext_resource type="Theme" uid="uid://bvoedy6niva4k" path="res://main_theme.tres" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://vti45e2u4mvw" path="res://scripts/pause.gd" id="8_kek77"]
 [ext_resource type="Shader" uid="uid://31cnn745tnt7" path="res://transition.gdshader" id="9_dg77c"]
-[ext_resource type="Script" uid="uid://doc74qsv676ob" path="res://level_label.gd" id="10_cegan"]
+[ext_resource type="Script" uid="uid://doc74qsv676ob" path="res://scripts/level_label.gd" id="10_cegan"]
 [ext_resource type="Script" uid="uid://c5x8dkylj7dvr" path="res://scripts/transition.gd" id="10_ycdy4"]
 [ext_resource type="FontFile" uid="uid://dswwfv4asta2f" path="res://fonts/KiwiSoda.ttf" id="11_2cqfq"]
 [ext_resource type="Script" uid="uid://b4kjbilmt6cq" path="res://scripts/level_up.gd" id="11_yaehf"]
 [ext_resource type="Texture2D" uid="uid://dkj7rlx5dve7s" path="res://sprites/arrow1.png" id="12_yaehf"]
 [ext_resource type="Texture2D" uid="uid://cu6lvh0cw7di0" path="res://sprites/arrow2.png" id="13_074og"]
+[ext_resource type="PackedScene" uid="uid://caxvvysnilkwn" path="res://audio.tscn" id="20_82xsv"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_074og"]
 points = PackedVector2Array(7.83667, -7.7837524, -6.4544067, 15.470581, -5.7148438, 23.923584, 5.3623047, 4.4994507, 7.5636597, -2.7912292)
@@ -64,6 +65,7 @@ texture_filter = 1
 stream = ExtResource("1_074og")
 autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="GameManager" type="Node" parent="." unique_id=730957163 groups=["game_manager"]]
 process_mode = 3
@@ -379,29 +381,38 @@ theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "Pause"
 
-[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/Control/Pause" unique_id=1539100374]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Pause" unique_id=379751704]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -33.0
-offset_right = 48.0
-offset_bottom = 19.0
+offset_left = -43.0
+offset_top = -65.0
+offset_right = 222.0
+offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 26
 
-[node name="Continue" type="Button" parent="CanvasLayer/Control/Pause/ButtonContainer" unique_id=781293348]
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/Control/Pause/HBoxContainer" unique_id=1539100374]
+layout_mode = 2
+alignment = 1
+
+[node name="Continue" type="Button" parent="CanvasLayer/Control/Pause/HBoxContainer/ButtonContainer" unique_id=781293348]
 layout_mode = 2
 theme = ExtResource("8_5vw27")
 text = "Continue"
 
-[node name="MainMenu" type="Button" parent="CanvasLayer/Control/Pause/ButtonContainer" unique_id=1204725039]
+[node name="MainMenu" type="Button" parent="CanvasLayer/Control/Pause/HBoxContainer/ButtonContainer" unique_id=1204725039]
 layout_mode = 2
 theme = ExtResource("8_5vw27")
 text = "Main menu"
+
+[node name="Audio" parent="CanvasLayer/Control/Pause/HBoxContainer" unique_id=1112668105 instance=ExtResource("20_82xsv")]
+custom_minimum_size = Vector2(156.5, 0)
+layout_mode = 2
 
 [connection signal="body_entered" from="Player/Sword/InnerOrigin/Sword/Area2D" to="Player/Sword/InnerOrigin/Sword" method="_on_area_2d_body_entered"]
 [connection signal="area_entered" from="Player/CollisionCheck" to="Player" method="_on_collision_check_area_entered"]
@@ -412,5 +423,5 @@ text = "Main menu"
 [connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/HBoxContainer/Damage/Damage" to="CanvasLayer/Control/LevelUp" method="_on_damage_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/VBoxContainer/Reset" to="CanvasLayer/Control/LevelUp" method="_on_reset_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/LevelUp/BG/HBoxContainer/NextLevel" to="CanvasLayer/Control/LevelUp" method="_on_next_level_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Pause/ButtonContainer/Continue" to="CanvasLayer/Control/Pause" method="_on_continue_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Pause/ButtonContainer/MainMenu" to="CanvasLayer/Control/Pause" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Pause/HBoxContainer/ButtonContainer/Continue" to="CanvasLayer/Control/Pause" method="_on_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Pause/HBoxContainer/ButtonContainer/MainMenu" to="CanvasLayer/Control/Pause" method="_on_main_menu_pressed"]

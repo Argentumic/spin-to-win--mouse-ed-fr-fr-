@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://caxvvysnilkwn"]
+
+[ext_resource type="Script" uid="uid://2evgttt15ec5" path="res://scripts/audio.gd" id="1_q45hi"]
+[ext_resource type="Theme" uid="uid://bvoedy6niva4k" path="res://main_theme.tres" id="2_ybffx"]
+
+[node name="Audio" type="VBoxContainer" unique_id=1112668105]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -78.25
+offset_top = 58.0
+offset_right = 78.25
+offset_bottom = 138.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+script = ExtResource("1_q45hi")
+
+[node name="MasterSlider" type="VBoxContainer" parent="." unique_id=683993679]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="MasterSlider" unique_id=1792466110]
+layout_mode = 2
+theme = ExtResource("2_ybffx")
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="MasterSlider" unique_id=96389466]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_ybffx")
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_position = 3
+
+[node name="MusicSlider" type="VBoxContainer" parent="." unique_id=586930670]
+layout_mode = 2
+
+[node name="Music" type="Label" parent="MusicSlider" unique_id=940900014]
+layout_mode = 2
+theme = ExtResource("2_ybffx")
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="MusicSlider" unique_id=229636751]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_ybffx")
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_position = 3
+
+[node name="SfxSlider" type="VBoxContainer" parent="." unique_id=248029157]
+layout_mode = 2
+
+[node name="SFX" type="Label" parent="SfxSlider" unique_id=1251087795]
+layout_mode = 2
+theme = ExtResource("2_ybffx")
+text = "SFX"
+
+[node name="SfxSlider" type="HSlider" parent="SfxSlider" unique_id=363965176]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_ybffx")
+max_value = 1.0
+step = 0.01
+value = 0.5
+ticks_position = 3
+
+[connection signal="value_changed" from="MasterSlider/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="MusicSlider/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="SfxSlider/SfxSlider" to="." method="_on_sfx_slider_value_changed"]

@@ -10,6 +10,8 @@ var transition;
 @onready var pauseMenu = $"../CanvasLayer/Control/Pause";
 @onready var levelUpMenu = $"../CanvasLayer/Control/LevelUp"
 @onready var musicPlayer = $"../MusicPlayer"
+@onready var mainTheme = preload("res://duckinja main theme (demo 1).mp3");
+@onready var elevatorMusic = preload("res://duckinja_elevator music(demo 1).mp3");
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	areaContainer = get_tree().get_first_node_in_group("area_container");
@@ -54,5 +56,7 @@ func finish_level() -> void:
 	musicPlayer.stop();
 	await _next_area();
 	get_tree().paused = true;
+	musicPlayer.stream = elevatorMusic;
+	musicPlayer.play();
 	levelUpMenu.visible = true;
 	levelUpMenu.add_points(1);
