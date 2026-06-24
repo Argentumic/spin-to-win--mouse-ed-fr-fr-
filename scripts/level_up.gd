@@ -27,8 +27,8 @@ var player
 @onready var mainTheme = preload("res://duckinja main theme (demo 1).mp3");
 @onready var elevatorMusic = preload("res://duckinja_elevator music(demo 1).mp3");
 
-var totalUpgradePoints:int = 1;
-var freeUpgradePoints:int = 1;
+var totalUpgradePoints:int = 0;
+var freeUpgradePoints:int = 0;
 
 func add_points(amtOfPts:int) -> void:
 	totalUpgradePoints += amtOfPts;
