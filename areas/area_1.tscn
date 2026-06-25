@@ -55,10 +55,6 @@ shape = SubResource("CircleShape2D_1prma")
 
 [node name="Mob" type="Node2D" parent="." unique_id=953314945]
 
-[node name="Dummy" parent="." unique_id=1152581304 instance=ExtResource("2_ybxip")]
-visible = false
-position = Vector2(528, -144)
-
 [node name="DPSRating" type="Label" parent="." unique_id=1416857718]
 offset_left = 444.0
 offset_top = -108.0
@@ -100,3 +96,6 @@ position = Vector2(1392, -144)
 
 [node name="LevelUpPoint" parent="." unique_id=1745768616 instance=ExtResource("5_r5y2n")]
 position = Vector2(2016, -144)
+
+[node name="Dummy" parent="." unique_id=235298915 instance=ExtResource("2_ybxip")]
+position = Vector2(528, -144)

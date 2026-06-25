@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://qaudsvvea8kv"]
 
+[ext_resource type="Script" uid="uid://d05kptsj5lwpw" path="res://scripts/dummy.gd" id="1_0umox"]
 [ext_resource type="Texture2D" uid="uid://cd7gai1wqv6c2" path="res://sprites/enemy.png" id="1_gtj52"]
-[ext_resource type="Script" uid="uid://bn74b3o5uhnqk" path="res://scripts/enemy.gd" id="1_stcs8"]
-[ext_resource type="Texture2D" uid="uid://cfm538o1tkqwe" path="res://sprites/marker.png" id="2_0lhgj"]
-[ext_resource type="Script" uid="uid://cvrg85x0o0uj0" path="res://scripts/marker.gd" id="3_k6daa"]
-[ext_resource type="PackedScene" uid="uid://ocu5l35r1h5y" path="res://healthbar.tscn" id="5_fxv83"]
+[ext_resource type="Theme" uid="uid://bvoedy6niva4k" path="res://main_theme.tres" id="3_1324b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_epg4t"]
 radius = 9.0
@@ -12,20 +10,10 @@ radius = 9.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
 size = Vector2(24, 24)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
-radius = 200.0
-
-[node name="Enemy" type="CharacterBody2D" unique_id=1341150150 groups=["enemy"]]
+[node name="Dummy" type="CharacterBody2D" unique_id=1341150150 groups=["enemy"]]
 texture_filter = 1
 motion_mode = 1
-script = ExtResource("1_stcs8")
-
-[node name="Marker" type="Sprite2D" parent="." unique_id=1697046159]
-texture_filter = 1
-texture = ExtResource("2_0lhgj")
-script = ExtResource("3_k6daa")
-screen_margin = 16.0
-smoothing_speed = 100.0
+script = ExtResource("1_0umox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462799679]
 texture = ExtResource("1_gtj52")
@@ -41,35 +29,19 @@ linear_damp = 15.84
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1318553001]
 shape = SubResource("RectangleShape2D_4gyqm")
 
-[node name="Timer" type="Timer" parent="." unique_id=793809508]
-autostart = true
-
-[node name="Healthbar" parent="." unique_id=1521435540 node_paths=PackedStringArray("target") instance=ExtResource("5_fxv83")]
-z_index = 1
+[node name="Label" type="Label" parent="." unique_id=491287893]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -19.0
-offset_top = -16.0
-offset_right = -19.0
-offset_bottom = -16.0
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.25, 0.25)
-target = NodePath("..")
-showPercentageEnabled = false
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=906316993]
-
-[node name="WakeUpArea" type="Area2D" parent="." unique_id=46368685]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WakeUpArea" unique_id=1783292783]
-shape = SubResource("CircleShape2D_qi2p4")
-debug_color = Color(0.91270345, 9.587646e-05, 0.72405934, 0.41960785)
+theme = ExtResource("3_1324b")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="HitBox" to="." method="_on_area_2d_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="WakeUpArea" to="." method="_on_wake_up_area_body_entered"]
