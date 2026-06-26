@@ -15,7 +15,7 @@ var is_player_inside:bool = false;
 var heal_node = preload("res://heal.tscn");
 var soul_node = preload("res://soul.tscn");
 var shuriken_node = preload("res://shuriken.tscn");
-@onready var sprite:Sprite2D = $Sprite2D;
+@onready var sprite:AnimatedSprite2D = $Sprite2D;
 var fullWhiteShaderMaterial = preload("res://shaders/full_white.tres");
 
 func _ready():
@@ -52,7 +52,11 @@ func _physics_process(delta):
 		sprite.flip_h = true;
 	velocity = current_agent_position.direction_to(next_path_position) * speed
 	if global_position.distance_to(playerPos) > 100:
+		sprite.play("Walk");
 		move_and_slide()
+	else:
+		if sprite.animation == "Walk":
+			sprite.stop();
 	
 func get_hp() -> float:
 	return hp
@@ -93,9 +97,10 @@ func _spawn_soul():
 
 func _on_timer_timeout() -> void:
 	if isActive:
+		sprite.play("Throw");
+		await get_tree().create_timer(0.5).timeout;
 		$PrepareToThrowSFXPlayer.pitch_scale = randf_range(0.9, 1.1);
 		$PrepareToThrowSFXPlayer.play();
-		await get_tree().create_timer(0.2).timeout;
 		var node:Node2D = shuriken_node.instantiate();
 		node.global_position = global_position;
 		node.damage = dps/2; #because shuriken animation is 2s long

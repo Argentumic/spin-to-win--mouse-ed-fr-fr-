@@ -3,9 +3,93 @@
 [ext_resource type="Script" uid="uid://bj3xjdpe2g6c8" path="res://scripts/enemy_shuriken.gd" id="1_757ui"]
 [ext_resource type="Texture2D" uid="uid://cfm538o1tkqwe" path="res://sprites/marker.png" id="2_tdbj4"]
 [ext_resource type="Script" uid="uid://cvrg85x0o0uj0" path="res://scripts/marker.gd" id="3_t5gkp"]
-[ext_resource type="Texture2D" uid="uid://dflkgaij21tvo" path="res://sprites/enemy_shuriken.png" id="4_757ui"]
+[ext_resource type="Texture2D" uid="uid://bpi7w3g7d1tui" path="res://sprites/enemy_shuriken/shuriken_throw.png" id="4_t5gkp"]
+[ext_resource type="Texture2D" uid="uid://cr84nd7ptj8ox" path="res://sprites/enemy_shuriken/shuriken_walk.png" id="5_dao50"]
 [ext_resource type="PackedScene" uid="uid://ocu5l35r1h5y" path="res://healthbar.tscn" id="5_xi73h"]
 [ext_resource type="AudioStream" uid="uid://b2a8a0rhgmlj4" path="res://sfx/enemy_throwing shuriken.ogg" id="6_tdbj4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi73h"]
+atlas = ExtResource("4_t5gkp")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kdnh"]
+atlas = ExtResource("4_t5gkp")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsy1v"]
+atlas = ExtResource("4_t5gkp")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmos7"]
+atlas = ExtResource("4_t5gkp")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk444"]
+atlas = ExtResource("4_t5gkp")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crm8p"]
+atlas = ExtResource("4_t5gkp")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwjsu"]
+atlas = ExtResource("5_dao50")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mix1"]
+atlas = ExtResource("5_dao50")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhfay"]
+atlas = ExtResource("5_dao50")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu88p"]
+atlas = ExtResource("5_dao50")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_llm4e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi73h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kdnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsy1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmos7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk444")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crm8p")
+}],
+"loop": false,
+"name": &"Throw",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwjsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mix1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhfay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu88p")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_epg4t"]
 radius = 9.0
@@ -30,8 +114,12 @@ script = ExtResource("3_t5gkp")
 screen_margin = 16.0
 smoothing_speed = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1462799679]
-texture = ExtResource("4_757ui")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=761543043]
+sprite_frames = SubResource("SpriteFrames_llm4e")
+animation = &"Throw"
+autoplay = "Walk"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=656443659]
 position = Vector2(0, 3)

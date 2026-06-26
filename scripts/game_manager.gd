@@ -1,7 +1,7 @@
 extends Node
 
 var areaPath = "res://areas/";
-var startingArea = 0;
+var startingArea = 3;
 var finalArea = 5;
 var currentArea = startingArea;
 var areaContainer;
