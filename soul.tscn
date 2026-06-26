@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://br21g7v4ygruu" path="res://scripts/soul.gd" id="1_nq8dp"]
 [ext_resource type="Texture2D" uid="uid://femcx3vl53fp" path="res://sprites/soul.png" id="2_nmvwf"]
+[ext_resource type="AudioStream" uid="uid://crrc46imnpvkl" path="res://sfx/enemy_dying.ogg" id="3_nmvwf"]
 
 [node name="Soul" type="Node2D" unique_id=630082404]
 z_index = 1
@@ -10,3 +11,10 @@ script = ExtResource("1_nq8dp")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=54588786]
 texture_filter = 1
 texture = ExtResource("2_nmvwf")
+
+[node name="DeathSFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1406854292]
+stream = ExtResource("3_nmvwf")
+volume_db = 2.0
+pitch_scale = 0.95
+autoplay = true
+bus = &"SFX"

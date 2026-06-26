@@ -96,6 +96,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		is_player_inside = false;
 
 func _on_timer_timeout() -> void:
+	$EnemyAttackSFXPlayer.play();
 	if is_player_inside:
 		player.deal_damage(dps);
 

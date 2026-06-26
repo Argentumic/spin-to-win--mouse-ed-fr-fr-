@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ocu5l35r1h5y" path="res://healthbar.tscn" id="3_qi2p4"]
 [ext_resource type="Texture2D" uid="uid://cfm538o1tkqwe" path="res://sprites/marker.png" id="4_epg4t"]
 [ext_resource type="Script" uid="uid://cvrg85x0o0uj0" path="res://scripts/marker.gd" id="4_iifgy"]
+[ext_resource type="AudioStream" uid="uid://dp8iuyaxlr48h" path="res://sfx/enemy_attack.ogg" id="6_3yqyl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_epg4t"]
 radius = 9.0
@@ -68,6 +69,12 @@ showPercentageEnabled = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WakeUpArea" unique_id=1783292783]
 shape = SubResource("CircleShape2D_qi2p4")
 debug_color = Color(0.91270345, 9.587646e-05, 0.72405934, 0.41960785)
+
+[node name="EnemyAttackSFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=777680326]
+stream = ExtResource("6_3yqyl")
+volume_db = 10.0
+max_distance = 50.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="HitBox" to="." method="_on_area_2d_body_exited"]

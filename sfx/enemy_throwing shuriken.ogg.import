@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b2a8a0rhgmlj4"
+path="res://.godot/imported/enemy_throwing shuriken.ogg-c900d2384ed7f8574b94ae60ea3e0d50.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/enemy_throwing shuriken.ogg"
+dest_files=["res://.godot/imported/enemy_throwing shuriken.ogg-c900d2384ed7f8574b94ae60ea3e0d50.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

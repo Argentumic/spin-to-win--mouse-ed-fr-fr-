@@ -67,6 +67,7 @@ value = 0.5
 ticks_position = 3
 
 [node name="AudioMenuSfxPlayer" type="AudioStreamPlayer" parent="." unique_id=364896945]
+volume_db = 12.0
 bus = &"SFX"
 
 [connection signal="value_changed" from="MasterSlider/MasterSlider" to="." method="_on_master_slider_value_changed"]

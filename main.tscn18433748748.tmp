@@ -18,7 +18,6 @@
 [ext_resource type="Script" uid="uid://c5x8dkylj7dvr" path="res://scripts/transition.gd" id="10_ycdy4"]
 [ext_resource type="FontFile" uid="uid://dswwfv4asta2f" path="res://fonts/KiwiSoda.ttf" id="11_2cqfq"]
 [ext_resource type="Script" uid="uid://b4kjbilmt6cq" path="res://scripts/level_up.gd" id="11_yaehf"]
-[ext_resource type="AudioStream" uid="uid://d3rpo8n8up6br" path="res://sfx/duck_dash hum.ogg" id="12_d13ii"]
 [ext_resource type="Texture2D" uid="uid://dkj7rlx5dve7s" path="res://sprites/arrow1.png" id="12_yaehf"]
 [ext_resource type="Texture2D" uid="uid://cu6lvh0cw7di0" path="res://sprites/arrow2.png" id="13_074og"]
 [ext_resource type="Script" uid="uid://beeiqlk3aaeun" path="res://scripts/the_end.gd" id="18_ryguw"]
@@ -169,10 +168,6 @@ script = ExtResource("10_cegan")
 bus = &"SFX"
 
 [node name="HurtSFXPlayer" type="AudioStreamPlayer" parent="Player" unique_id=25849153]
-bus = &"SFX"
-
-[node name="HumSFXPlayer" type="AudioStreamPlayer" parent="Player" unique_id=1165284312]
-stream = ExtResource("12_d13ii")
 bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1838958213 node_paths=PackedStringArray("target") groups=["camera"]]

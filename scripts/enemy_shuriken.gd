@@ -93,6 +93,9 @@ func _spawn_soul():
 
 func _on_timer_timeout() -> void:
 	if isActive:
+		$PrepareToThrowSFXPlayer.pitch_scale = randf_range(0.9, 1.1);
+		$PrepareToThrowSFXPlayer.play();
+		await get_tree().create_timer(0.2).timeout;
 		var node:Node2D = shuriken_node.instantiate();
 		node.global_position = global_position;
 		node.damage = dps/2; #because shuriken animation is 2s long

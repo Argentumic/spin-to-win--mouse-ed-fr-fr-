@@ -3,6 +3,7 @@ extends Node2D
 var player:Node2D;
 var isPlayerInside:bool = false;
 func _ready() -> void:
+	$PoisonSizzlingSFXPlayer.pitch_scale = randf_range(0.9, 1.1);
 	player = get_tree().get_first_node_in_group("player");
 	var tween = get_tree().create_tween();
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.5), 6.0);
