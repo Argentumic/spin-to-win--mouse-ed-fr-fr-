@@ -91,9 +91,11 @@ func _physics_process(delta: float) -> void:
 		dash_tween = get_tree().create_tween();
 		humSfxPlayer.pitch_scale = 0.5;
 		dash_tween.tween_property(dashCooldownBar, "value", 0.0, dashTime);
+		dash_tween.parallel().tween_property(camera, "zoom", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_CUBIC);
 		dash_tween.tween_callback(humSfxPlayer.play);
 		dash_tween.tween_property(dashCooldownBar, "value", 100.0, dashCooldown-0.1);
 		dash_tween.parallel().tween_property(humSfxPlayer, "pitch_scale", 2.0, dashCooldown-0.1);
+		dash_tween.parallel().tween_property(camera, "zoom", Vector2(1.0, 1.0), 0.1).set_trans(Tween.TRANS_CUBIC);
 		dash_tween.tween_callback(humSfxPlayer.stop);
 		dash_tween.tween_property(dashCooldownBar, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5);
 	

@@ -4,6 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://femcx3vl53fp" path="res://sprites/soul.png" id="2_nmvwf"]
 [ext_resource type="AudioStream" uid="uid://crrc46imnpvkl" path="res://sfx/enemy_dying.ogg" id="3_nmvwf"]
 
+[sub_resource type="Curve" id="Curve_bx6qs"]
+_limits = [0.0, 300.0, 0.0, 1.0]
+_data = [Vector2(0, 300), 0.0, 0.0, 0, 0, Vector2(0.19125682, 300), 0.0, 0.0, 0, 0, Vector2(0.2978142, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_nmvwf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.57377046, 0.74332976), -0.21762438, -0.21762438, 0, 0, Vector2(1, 0.2508005), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Soul" type="Node2D" unique_id=630082404]
 z_index = 1
 script = ExtResource("1_nq8dp")
@@ -12,9 +21,33 @@ script = ExtResource("1_nq8dp")
 texture_filter = 1
 texture = ExtResource("2_nmvwf")
 
-[node name="DeathSFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1406854292]
+[node name="DeathSFXPlayer" type="AudioStreamPlayer2D" parent="Sprite2D" unique_id=1406854292]
 stream = ExtResource("3_nmvwf")
 volume_db = 2.0
 pitch_scale = 0.95
 autoplay = true
 bus = &"SFX"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1147292227]
+emitting = false
+amount = 64
+lifetime = 0.3
+one_shot = true
+speed_scale = 1.75
+explosiveness = 1.0
+randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 7.0
+spread = 105.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+linear_accel_min = 0.5
+linear_accel_max = 3.0
+linear_accel_curve = SubResource("Curve_bx6qs")
+damping_min = 0.5
+damping_max = 6.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_nmvwf")
+color = Color(0.74509805, 0, 0, 1)
